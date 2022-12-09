@@ -3,13 +3,12 @@ import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
     return (
-        <>
             <div className="drawer drawer-mobile">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-center justify-center">
                     {/* <!-- Page content here --> */}
                     <Outlet />
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden mt-2">Open drawer</label>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -20,7 +19,6 @@ const Dashboard = () => {
                     </ul>
                 </div>
             </div>
-        </>
     );
 };
 
