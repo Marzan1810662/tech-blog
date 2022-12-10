@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { AiFillEdit } from 'react-icons/ai'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux';
+import deleteContentData from '../../../redux/thunk/content/deleteContentData';
 import fetchAllContentsData from '../../../redux/thunk/content/fetchAllContentsData';
 
 const AllBlog = () => {
@@ -33,7 +34,8 @@ const AllBlog = () => {
                                 <td>{content.title}</td>
                                 <td>{content.uploadTime}</td>
                                 <td><button className='btn btn-primary'><AiFillEdit /></button></td>
-                                <td><button className='text-red-500'><BsFillTrashFill /></button></td>
+                                <td><button className='text-red-500'
+                                 onClick={()=> dispatch(deleteContentData(content._id))}><BsFillTrashFill /></button></td>
                             </tr>)
                     }
                 </tbody>
