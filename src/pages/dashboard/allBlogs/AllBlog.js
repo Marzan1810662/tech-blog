@@ -77,9 +77,6 @@ const AllBlog = () => {
                                     {
                                         editContent.flags?.map((flag, index) => <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" id={`flag_${++index}`} defaultValue={flag} />)
                                     }
-                                    {/* <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" id='flag_1' value={editContent?.flags?.length}/>
-                                    <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" id='flag_2'  value={editContent?.title}/>
-                                    <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" id='flag_3'  value={editContent?.title}/> */}
                                 </div>
                             </div>
                             <div className='mx-auto'>
