@@ -1,4 +1,6 @@
 import React from 'react';
+import {AiFillEdit} from 'react-icons/ai'
+import {BsFillTrashFill} from 'react-icons/bs'
 
 const AllBlog = () => {
     return (
@@ -18,8 +20,8 @@ const AllBlog = () => {
                     <tr className='border-2'>
                         <th>1</th>
                         <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
+                        <td><AiFillEdit/></td>
+                        <td><BsFillTrashFill/></td>
                     </tr>
                     {/* <!-- row 2 --> */}
                     <tr className='border'>
