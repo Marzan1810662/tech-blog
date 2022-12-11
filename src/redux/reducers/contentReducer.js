@@ -1,10 +1,22 @@
-import { ADD_CONTENT, ADD_TO_READING_HISTORY, ADD_UPDATE_CONTENT, DELETE_CONTENT, GET_CONTENT, GET_SINGLE_CONTENT, UPDATE_CONTENT } from "../actionTypes/actionTypes";
+import {
+    ADD_CONTENT,
+    ADD_TO_READING_HISTORY,
+    ADD_UPDATE_CONTENT,
+    DELETE_CONTENT,
+    GET_CONTENT,
+    GET_SINGLE_CONTENT,
+    SORT_BY_FIRST_UPLOAD,
+    SORT_BY_LAST_UPLOAD,
+    TOGGLE_TAG,
+    UPDATE_CONTENT
+} from "../actionTypes/actionTypes";
 
 const initialState = {
     contents: [],
     content: {},
     editContent: {},
-    readingHistory: []
+    readingHistory: [],
+    tags: []
 }
 
 const contentReducer = (state = initialState, action) => {
@@ -14,6 +26,8 @@ const contentReducer = (state = initialState, action) => {
                 ...state,
                 contents: [...state.contents, action.payload]
             }
+        case SORT_BY_LAST_UPLOAD:
+        case SORT_BY_FIRST_UPLOAD:
         case GET_CONTENT:
             return {
                 ...state,
@@ -40,10 +54,29 @@ const contentReducer = (state = initialState, action) => {
                 contents: [...state.contents.filter(content => content._id !== action.payload)]
             }
         case ADD_TO_READING_HISTORY:
+            if (state.readingHistory.find(content => content._id === action.payload._id)) {
+                state.readingHistory.forEach(content => content.position = content.position + 1)
+                const newReadingHistory = state.readingHistory.filter(content => content._id !== action.payload._id);
+                console.log(newReadingHistory);
+                return {
+                    ...state,
+                    readingHistory: [...newReadingHistory, { position: 0, ...action.payload }]
+                }
+            }
             return {
                 ...state,
-                readingHistory: [...state.readingHistory.filter(content => content._id !== action.payload._id),
-                state.readingHistory.find(content => content._id === action.payload._id) ? { position: 0, ...action.payload } : { position: state.readingHistory.length + 1, ...action.payload }]
+                readingHistory: [...state.readingHistory, { position: state.readingHistory.length, ...action.payload }]
+            }
+        case TOGGLE_TAG:
+            if (!state.tags.includes(action.payload)) {
+                return {
+                    ...state,
+                    tags: [...state.tags, action.payload]
+                }
+            }
+            return {
+                ...state,
+                tags: state.tags.filter(tag => tag !== action.payload)
             }
         default:
             return state;
