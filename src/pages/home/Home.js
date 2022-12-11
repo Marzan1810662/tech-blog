@@ -4,6 +4,7 @@ import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux';
 import fetchAllContentsData from '../../redux/thunk/content/fetchAllContentsData';
 import { useNavigate } from 'react-router-dom';
+import { ADD_TO_READING_HISTORY } from '../../redux/actionTypes/actionTypes';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -13,6 +14,10 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchAllContentsData())
     }, []);
+
+    const handleSeeMore = () => {
+
+    }
     return (
         <div className='flex flex-col gap-4'>
             <Navbar />
@@ -32,8 +37,13 @@ const Home = () => {
                                     {content.title}
                                     {/* <div className="badge badge-secondary">NEW</div> */}
                                 </h2>
-                                <p>{content.mainContent.length > 100 ? content.mainContent.slice(0, 150)+'...' : content.mainContent}</p>
-                                <span className='btn btn-link no-underline text-end p-3' onClick={() => navigate(`/blog/${content._id}`)}><p>See more...</p></span>
+                                <p>{content.mainContent.length > 100 ? content.mainContent.slice(0, 150) + '...' : content.mainContent}</p>
+                                <span className='btn btn-link no-underline text-end p-3'
+                                    onClick={() => {
+                                        navigate(`/blog/${content._id}`);
+                                        dispatch({ type: ADD_TO_READING_HISTORY, payload: content })
+                                    }}
+                                ><p>See more...</p></span>
                                 <div className="card-actions justify-end">
                                     <div className="hover:bg-secondary badge badge-outline cursor-pointer">{content.flags[0]}</div>
                                     <div className="hover:bg-secondary badge badge-outline cursor-pointer">{content.flags[1]}</div>
