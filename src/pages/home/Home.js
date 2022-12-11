@@ -13,7 +13,6 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchAllContentsData())
     }, []);
-
     return (
         <div className='flex flex-col gap-4'>
             <Navbar />
@@ -33,17 +32,17 @@ const Home = () => {
                                     {content.title}
                                     {/* <div className="badge badge-secondary">NEW</div> */}
                                 </h2>
-                                <p>{content.mainContent}</p>
-                                <span className='btn btn-link no-underline text-end p-3' onClick = {()=> navigate(`/blog/${content._id}`)}><p>See more...</p></span>
-                            <div className="card-actions justify-end">
-                                <div className="hover:bg-secondary badge badge-outline cursor-pointer">{content.flags[0]}</div>
-                                <div className="hover:bg-secondary badge badge-outline cursor-pointer">{content.flags[1]}</div>
-                                <div className="hover:bg-secondary badge badge-outline cursor-pointer">{content.flags[2]}</div>
+                                <p>{content.mainContent.length > 100 ? content.mainContent.slice(0, 150)+'...' : content.mainContent}</p>
+                                <span className='btn btn-link no-underline text-end p-3' onClick={() => navigate(`/blog/${content._id}`)}><p>See more...</p></span>
+                                <div className="card-actions justify-end">
+                                    <div className="hover:bg-secondary badge badge-outline cursor-pointer">{content.flags[0]}</div>
+                                    <div className="hover:bg-secondary badge badge-outline cursor-pointer">{content.flags[1]}</div>
+                                    <div className="hover:bg-secondary badge badge-outline cursor-pointer">{content.flags[2]}</div>
+                                </div>
                             </div>
-                        </div>
                         </div>)
                 }
-        </div>
+            </div>
         </div >
     );
 };
