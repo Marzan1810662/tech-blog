@@ -38,16 +38,16 @@ export const toggleTag = (tag) => {
     }
 }
 export const sortByFirstUpload = (contents) => {
-    console.log(contents.sort((a, b) => a.uploadTime - b.uploadTime));
+    //console.log(contents.sort((a, b) => Date.parse(a.uploadTime) - Date.parse(b.uploadTime)));
     return {
         type: SORT_BY_FIRST_UPLOAD,
-        payload: contents.sort((a, b) => a.uploadTime - b.uploadTime)
+        payload: contents.sort((a, b) => Date.parse(a.uploadTime) - Date.parse(b.uploadTime))
     }
 }
 export const sortByLastUpload = (contents) => {
-    console.log(contents.sort((a, b) => b.uploadTime - a.uploadTime))
+    //console.log(contents.sort((a, b) => Date.parse(b.uploadTime) - Date.parse(a.uploadTime)))
     return {
         type: SORT_BY_LAST_UPLOAD,
-        payload: contents.sort((a, b) => b.uploadTime - a.uploadTime)
+        payload: contents.sort((a, b) => Date.parse(b.uploadTime) - Date.parse(a.uploadTime))
     }
 }
